@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 08:48:36 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/12 15:15:34 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/13 10:30:45 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int main(void)
 	if (pid == 0)
 	{
 		dup2(fd_infile, STDIN_FILENO);
-		// close(fd_infile);
+		close(fd_infile);
 		printf("Child process\n");
 		execve(args[0], args, envp);
 	}
-	read(fd_outfile, &buffer, sizeof(buffer));
-	write(fd_outfile, &buffer, sizeof(buffer));
 
 	waitpid(pid, &status, 0);
+	read(fd_outfile, &buffer, sizeof(buffer));
+	write(fd_outfile, &buffer, sizeof(buffer));
 	printf("Parents process\n");
 	close(fd_infile);
 	close(fd_outfile);
