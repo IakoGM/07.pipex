@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:41:35 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/19 11:40:31 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:51:32 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ typedef	struct s_data
 	int		fdin;
 	int		fdout;
 	char	**args;
-	char	**comands;
+	char	**firstcommand;
+	char	**secondcommand;
 		
 }			t_data;
 
 
 // ------- FUNCIONES ------- //
 void	ft_check_params(char **argv, char **envp);
+void	printargs(char **args);
 
 #endif

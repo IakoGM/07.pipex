@@ -6,11 +6,24 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:17 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/19 12:11:23 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:42:58 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	printargs(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		puts(args[i]);
+		i++;
+	}
+	puts(args[i]);
+}
 
 void	ft_check_params(char **argv, char **envp)
 {
@@ -20,10 +33,14 @@ void	ft_check_params(char **argv, char **envp)
 	char	**envs;
 	char	*all_path;
 	char	*path = "/sort";
-	
 
 	i = 0;
 	j = 0;
+	if (access(argv[1], F_OK) != 0)
+	{
+		write(2, "El archivo de entrada introducido es invalido!!\n", 48);
+		exit(EXIT_FAILURE);
+	}
 	fdin = open(argv[1], O_RDONLY);
 	if (fdin == -1)
 		perror("No se puede abrir el archivo");
@@ -39,6 +56,7 @@ void	ft_check_params(char **argv, char **envp)
 				if (access(all_path, X_OK) == 0)
 				{
 					puts(all_path);
+					printargs(argv);
 					if (execve(all_path, argv, &envp[i]) == -1)
 					 	perror("Fallo en execve");
 				}
@@ -51,3 +69,7 @@ void	ft_check_params(char **argv, char **envp)
 		i++;
 	}
 }
+
+// void	ft_parse_args(char **args)
+// {	
+// }
