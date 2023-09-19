@@ -1,45 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp.c                                             :+:      :+:    :+:   */
+/*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 11:40:24 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/19 12:11:47 by jakgonza         ###   ########.fr       */
+/*   Created: 2023/09/19 10:53:17 by jakgonza          #+#    #+#             */
+/*   Updated: 2023/09/19 12:11:23 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include "env.h"
+#include "pipex.h"
 
-int main(int argc, char const *argv[], char *envp[])
+void	ft_check_params(char **argv, char **envp)
 {
+	int		fdin;
 	int		i;
 	int		j;
-	char	**result;
-	char	*path = "/sort";
+	char	**envs;
 	char	*all_path;
-	char	**arguments = {NULL};
+	char	*path = "/sort";
+	
 
 	i = 0;
 	j = 0;
-	if (!envp)
-		perror("Las variables de entorno estan vacias.\n");
+	fdin = open(argv[1], O_RDONLY);
+	if (fdin == -1)
+		perror("No se puede abrir el archivo");
 	while (envp[i])
 	{
-		if (strncmp("PATH=", envp[i], 5) == 0)
+		if (ft_strncmp("PATH=", envp[i], 5) == 0)
 		{
-			result = ft_split(envp[i], ':');
-			result[0] = ft_substr(result[0], 5, strlen(result[0]));
-			while (result[j])
-			{				
-				all_path = ft_strjoin(result[j], path);
+			envs = ft_split(envp[i], ':');
+			envs[0] = ft_substr(envs[0], 5, ft_strlen(envs[0]));
+			while (envs[j])
+			{
+				all_path = ft_strjoin(envs[j], path);
 				if (access(all_path, X_OK) == 0)
 				{
 					puts(all_path);
-					if (execve(all_path, arguments, &envp[i]) == -1)
+					if (execve(all_path, argv, &envp[i]) == -1)
 					 	perror("Fallo en execve");
 				}
 				else
@@ -50,5 +50,4 @@ int main(int argc, char const *argv[], char *envp[])
 		}
 		i++;
 	}
-	return 0;
 }
