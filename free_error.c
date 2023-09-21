@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   free_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 16:35:49 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 16:27:08 by jakgonza         ###   ########.fr       */
+/*   Created: 2023/09/21 11:02:54 by jakgonza          #+#    #+#             */
+/*   Updated: 2023/09/21 17:58:58 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-size_t	ft_strlen(const char *str)
+void	ft_free_double_pointer(char **c)
 {
 	int	i;
 
 	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
+	while (c[i])
+			free(c[i]);
+		free(c);
+}
+
+void	ft_free_data(t_data *data)
+{
+	if (data->firstcommand)
+		ft_free_double_pointer(data->firstcommand);
+	if (data->secondcommand)
+		ft_free_double_pointer(data->secondcommand);
+	if (data->firstcommandpath)
+		free(data->firstcommandpath);
+	if (data->secondcommandpath)
+		free(data->secondcommandpath);
 }

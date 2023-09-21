@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:57:41 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/15 14:23:42 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/21 13:29:37 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
 		waitpid(-1, &status, 0);				/* Esperamos a que finalice el hijo */
 		close(fd_pipe[1]);						/* Cerramos el extremo de escritura - WRITE_END que no necesitamos, porque vamos a escribir directamente en el archivo */
 		fdout = open("outfile.txt", O_CREAT | O_WRONLY, 0644);
-		while (bits_read = read(fd_pipe[0], &buffer, 1) > 0)	/* Mientras haya datos en el READ_END del pipe() lee e imprime */
+		while (bits_read == read(fd_pipe[0], &buffer, 1) > 0)	/* Mientras haya datos en el READ_END del pipe() lee e imprime */
 			write(fdout, &buffer, 1);
 		close(fd_pipe[0]);
 	}

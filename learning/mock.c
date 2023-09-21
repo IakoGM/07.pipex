@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 11:58:36 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:59 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/21 13:26:13 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main(int argc, char const *argv[])
 	pid_t	child1;
 	pid_t	child2;
 	
+	fdin = open("infile.txt", O_RDONLY);
 	pipe(fd_pipe);
 
 	child1 = fork();
@@ -40,7 +41,6 @@ int main(int argc, char const *argv[])
 	if (child1 == 0)		// Estamos en el primer hijo
 	{
 		close(fd_pipe[0]);
-		fdin = open("infile.txt", O_RDONLY);
 		dup2(fdin, STDIN_FILENO);				// Hemos redirigido el STDIN al archivo
 		close(fdin);
 		dup2(fd_pipe[1], STDOUT_FILENO);
@@ -48,21 +48,23 @@ int main(int argc, char const *argv[])
 	}
 	else				// Estamos en el padre
 	{
+		waitpid(-1, status, 0);	
+		close(fd_pipe[1]);
+		dup2(fd_pipe[0], STDIN_FILENO);
+		close(fd_pipe[0]);
+
+		fdout = open("mockout.txt", O_CREAT | O_WRONLY, 0660);
 		child2 = fork();
 		
 		if (child2 == 0)	// Estamos en el segundo hijo
 		{
-			close(fd_pipe[1]);
-			dup2(fd_pipe[0], STDIN_FILENO);
-			close(fd_pipe[0]);
-			fdout = open("mockout.txt", O_CREAT | O_WRONLY, 0644);
 			dup2(fdout, STDOUT_FILENO);
 			execlp("/bin/wc", "wc", "-c", NULL);
 		}
 		else		// Estamos de nuevo en el padre
 		{
-			close(fd_pipe[0]);
-			close(fd_pipe[1]);
+			waitpid(-1, status, 0);	
+			close(fdout);
 		}
 	}
 	waitpid(-1, status, 0);

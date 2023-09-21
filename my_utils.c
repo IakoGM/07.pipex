@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   my_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 16:35:49 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 16:27:08 by jakgonza         ###   ########.fr       */
+/*   Created: 2023/09/21 11:46:09 by jakgonza          #+#    #+#             */
+/*   Updated: 2023/09/21 16:24:03 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-size_t	ft_strlen(const char *str)
+void	printargs(char **argv)
 {
 	int	i;
 
 	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
+	while (argv[i])
+	{
+		puts(argv[i]);
 		i++;
-	return (i);
+	}
+	puts(argv[i]);
 }

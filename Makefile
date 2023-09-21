@@ -6,7 +6,7 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 10:57:57 by jakgonza          #+#    #+#              #
-#    Updated: 2023/09/19 12:03:07 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/09/21 16:26:04 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,12 @@ NAME = pipex
 
 SRCS = 	main.c\
 		pipex_utils.c\
+		free_error.c\
+		my_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g3 -Wall -Werror -Wextra -fsanitize=address 
 
 LIBFT = libft/libft.a
 
