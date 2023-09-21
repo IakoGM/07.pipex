@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:17 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 17:34:59 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:51:21 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_get_cmd_path(char **envp, t_data *data)
 			{
 				data->firstcommandpath = ft_strjoin(env_path[j], temp);
 				if (access(data->firstcommandpath, F_OK) == 0)
-					return (free(temp));
+					return (free(temp), free(env_path));
 				j++;
 			}
 		}
@@ -62,7 +62,7 @@ void	ft_get_cmd2_path(char **envp, t_data *data)
 			{
 				data->secondcommandpath = ft_strjoin(env_path[j], temp);
 				if (access(data->secondcommandpath, F_OK) == 0)
-					return (free(temp));
+					return (free(temp), free(env_path));
 				j++;
 			}
 		}

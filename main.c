@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:41:00 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 17:59:23 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/21 19:17:20 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int main(int argc, char const *argv[], char **envp)
 		else			// Padre
 		{
 			waitpid(pid, NULL, 0);
+
 			puts("Soy el Padre");
 			close(data.fd_pipe[1]);
 			dup2(data.fd_pipe[0], STDIN_FILENO);
@@ -81,8 +82,8 @@ int main(int argc, char const *argv[], char **envp)
 				exit(1);
 			}
 			waitpid(pid, NULL, 0);
-			ft_free_data(&data);
 		}
+		ft_free_data(&data);
 	}
 	return 0;
 }

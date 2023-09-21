@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:02:54 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 18:06:19 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:13:27 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	ft_free_double_pointer(char **c)
 
 void	ft_free_data(t_data *data)
 {
-	if (data->firstcommand)
+	if (data->firstcommand != NULL)
 		ft_free_double_pointer(data->firstcommand);
-	if (data->secondcommand)
+	if (data->secondcommand != NULL)
 		ft_free_double_pointer(data->secondcommand);
-	if (data->firstcommandpath)
+	if (data->firstcommandpath != NULL)
 		free(data->firstcommandpath);
-	if (data->secondcommandpath)
+	if (data->secondcommandpath != NULL)
 		free(data->secondcommandpath);
 }
