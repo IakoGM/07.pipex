@@ -6,7 +6,7 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 10:57:57 by jakgonza          #+#    #+#              #
-#    Updated: 2023/09/21 16:26:04 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/09/22 12:27:27 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = 	main.c\
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -g3 -Wall -Werror -Wextra -fsanitize=address 
+CFLAGS = -g -Wall -Werror -Wextra
 
 LIBFT = libft/libft.a
 

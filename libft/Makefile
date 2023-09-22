@@ -6,7 +6,7 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 15:24:43 by jakgonza          #+#    #+#              #
-#    Updated: 2023/09/21 19:07:38 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/09/22 14:17:23 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,12 @@ SRCS = ft_strlen.c\
 	   ft_substr.c\
 	   ft_strjoin.c\
 	   ft_split.c\
+	   ft_strdup.c\
+	   ft_memcpy.c\
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -g3 -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -g -Wall -Werror -Wextra
 
 %.o: %.c
 	gcc $(CFLAGS) -c $< -o $@

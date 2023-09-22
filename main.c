@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:41:00 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 19:17:20 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:40:38 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_data	ft_init_data()
 	data.firstcommandpath = NULL;
 	data.secondcommand = NULL;
 	data.secondcommandpath = NULL;
+	data.env_path = NULL;
 	return (data);
 }
 

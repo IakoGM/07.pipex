@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:02:54 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 18:13:27 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:38:54 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_free_double_pointer(char **c)
 
 	i = 0;
 	while (c[i])
+	{
 		free(c[i]);
+		i++;
+	}
 	free(c);
 }
 
