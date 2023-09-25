@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:02:54 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/22 11:38:54 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:58:54 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,6 @@ void	ft_free_data(t_data *data)
 		free(data->firstcommandpath);
 	if (data->secondcommandpath != NULL)
 		free(data->secondcommandpath);
+	if (data->env_path != NULL)
+		ft_free_double_pointer(data->env_path);
 }

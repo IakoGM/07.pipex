@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:41:00 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/22 13:40:38 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/25 12:52:35 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,40 +33,44 @@ int main(int argc, char const *argv[], char **envp)
 	t_data	data;
 	pid_t	pid;
 	
-	if (argc == 0)
-		return(write(2, "Numero de argumentos menor a 4!!\n", 33), 1);
+	if (argc != 5)
+		return (write(2, "Numero de argumentos menor a 4!!\n", 33), 1);
+	else if (argv[2][0] == '\0' || argv[3][0] == '\0')
+		return (write(2, "Introduce un comando.\n", 22), 1);
 	else
 	{
 		data = ft_init_data();
 		data.fdin = open(argv[1], O_RDONLY);
 		if (data.fdin == -1)
-			write(2, "Error al abrir el archivo!!\n", 28);
+			return (write(2, "Error al abrir el archivo!!\n", 28), 1);
 		ft_get_data(argv, envp, &data);
-		
 		pipe(data.fd_pipe);
-		
 		pid = fork();
-		
 		if (pid == 0)	// Hijo
 		{
-			puts("Soy el hijo");
-			printf("{%s}\n", data.firstcommandpath);
-			printargs(data.firstcommand);
-			printf("{%s}\n", data.secondcommandpath);
-			printargs(data.secondcommand);
+			// puts("Soy el hijo");
+			// printf("{%s}\n", data.firstcommandpath);
+			// printargs(data.firstcommand);
+			// printf("{%s}\n", data.secondcommandpath);
+			// printargs(data.secondcommand);
 
 			close(data.fd_pipe[0]);
 			dup2(data.fdin, STDIN_FILENO);
 			dup2(data.fd_pipe[1], STDOUT_FILENO);
 			close(data.fd_pipe[1]);
-			execve(data.firstcommandpath, data.firstcommand, envp);
-			exit(1);
+			// ELIMINAR - FAILED
+			// data.firstcommandpath = NULL;
+			if (execve(data.firstcommandpath, data.firstcommand, envp) == -1)
+			{
+				write(2, "Error execve cmd 1\n", 19);
+				ft_free_data(&data);
+				exit(1);
+			}
 		}
 		else			// Padre
 		{
 			waitpid(pid, NULL, 0);
-
-			puts("Soy el Padre");
+			// puts("Soy el Padre");
 			close(data.fd_pipe[1]);
 			dup2(data.fd_pipe[0], STDIN_FILENO);
 			close(data.fd_pipe[0]);
@@ -79,7 +83,8 @@ int main(int argc, char const *argv[], char **envp)
 				dup2(data.fdout, STDOUT_FILENO);
 				close(data.fdout);
 				execve(data.secondcommandpath, data.secondcommand, envp);
-				puts("Error execve cmd 2");
+				write(2, "Error execve cmd 2\n", 19);
+				ft_free_data(&data);
 				exit(1);
 			}
 			waitpid(pid, NULL, 0);

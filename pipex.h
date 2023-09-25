@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:41:35 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/22 14:21:11 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:48:27 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 // ------- STRUCT ------- //
 typedef	struct s_data
@@ -36,7 +37,6 @@ typedef	struct s_data
 // ------- FUNCIONES ------- //
 void	ft_get_data(char const **argv, char **envp, t_data *data);
 void	ft_get_cmd_path(char **envp, t_data *data);
-// void	ft_get_cmd2_path(char **envp, t_data *data);
 void	ft_access_first(t_data *data);
 void	ft_access_second(t_data *data);
 

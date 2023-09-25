@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:46:09 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 16:24:03 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:54:41 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void	printargs(char **argv)
 		puts(argv[i]);
 		i++;
 	}
-	puts(argv[i]);
 }
