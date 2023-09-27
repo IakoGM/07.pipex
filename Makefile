@@ -6,7 +6,7 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 10:57:57 by jakgonza          #+#    #+#              #
-#    Updated: 2023/09/22 12:27:27 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/09/27 13:06:00 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ fclean:
 	@make fclean -C ./libft
 
 iako: clean fclean
+
 re: fclean all
 
 .PHONY: all clean fclean re

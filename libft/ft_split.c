@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:04:40 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/21 16:30:10 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/26 13:17:52 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ char	**ft_split(char const *s, char c)
 	i = -1;
 	j = 0;
 	start = i;
-	// Tiene lineas de mas despues de agregar '!s'
-	if (!s)
-		return (0);
 	slen = ft_strlen(s);
 	str = (char **) malloc((countwords(s, c) + 1) * sizeof(char *));
 	if (!str)

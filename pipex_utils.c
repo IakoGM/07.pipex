@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:17 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/09/25 12:42:40 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:06:59 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,11 @@ void	ft_get_cmd_path(char **envp, t_data *data)
 	int		i;
 
 	i = 0;
-	// puts("Estoy en get_cmd_path"); // ELIMINAR
-	
 	while (envp[i])
 	{
 		if (ft_strncmp("PATH=", envp[i], 5) == 0)
-		{		/* LIBERAR - env_path y temp */
+		{
 			data->env_path = ft_split(envp[i], ':');
-			// puts("Variables de entorno");
-			// printargs(data->env_path);
 			temp = ft_strdup(data->env_path[0]);
 			free(data->env_path[0]);
 			data->env_path[0] = ft_substr(temp, 5, ft_strlen(temp));
@@ -83,7 +79,7 @@ void	ft_get_cmd_path(char **envp, t_data *data)
 	}
 }
 
-void	ft_get_data(char const **argv, char **envp, t_data *data)
+void	ft_get_data(char **argv, char **envp, t_data *data)
 {
 	data->firstcommand = ft_split(argv[2], ' ');
 	data->secondcommand = ft_split(argv[3], ' ');
